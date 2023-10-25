@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/produk_form.dart';
 
-// ignore: must_be_immutable
 class ProdukDetail extends StatefulWidget {
   Produk? produk;
 
@@ -17,7 +16,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Produk - Rangga'),
+        title: const Text('Detail Produk'),
       ),
       body: Center(
         child: Column(
@@ -34,7 +33,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
               "Harga : Rp. ${widget.produk!.hargaProduk.toString()}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            _tombolHapusEdit(),
+            _tombolHapusEdit()
           ],
         ),
       ),
@@ -45,25 +44,20 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Tombol Edit
+        //Tombol Edit
         OutlinedButton(
-          child: const Text("EDIT"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProdukForm(
-                  produk: widget.produk!,
-                ),
-              ),
-            );
-          },
-        ),
-        // Tombol Hapus
+            child: const Text("EDIT"),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProdukForm(
+                            produk: widget.produk!,
+                          )));
+            }),
+        //Tombol Hapus
         OutlinedButton(
-          child: const Text("DELETE"),
-          onPressed: () => confirmHapus(),
-        ),
+            child: const Text("DELETE"), onPressed: () => confirmHapus()),
       ],
     );
   }
@@ -72,16 +66,23 @@ class _ProdukDetailState extends State<ProdukDetail> {
     AlertDialog alertDialog = AlertDialog(
       content: const Text("Yakin ingin menghapus data ini?"),
       actions: [
-        // Tombol Hapus
+        //tombol hapus
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProdukForm(
+                          produk: widget.produk!,
+                        )));
+          },
         ),
-        // Tombol Batal
+        //tombol batal
         OutlinedButton(
           child: const Text("Batal"),
           onPressed: () => Navigator.pop(context),
-        ),
+        )
       ],
     );
 
